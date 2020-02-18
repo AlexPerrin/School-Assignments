@@ -260,7 +260,7 @@ Entityentity = entities[entityid];
 entName = entity.getName();
 // Call the ImageSetter method
 ImageSetter();
-// Print the name of the e n t i t y to be guessed
+// Print the name of the entity to be guessed
 // in the entityName textview
 entityName.setText(entName);
 // Clear Previous Entry
