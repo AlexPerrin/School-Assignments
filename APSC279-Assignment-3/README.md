@@ -145,16 +145,16 @@ the two Buttons defined earlier are clicked by the user. Define the actions as
 follows each button using the setOnClickListener() method:
 ```
 //OnClick Listener action for clear button
-b t n c l e a r C o n t e n t. s e t O n C l i c k L i s t e n e r (newView. O n C l i c k L i s t e n e r ( ){
+btnclearContent.setOnClickListener(newView.OnClickListener(){
 @Override
-public void o n C l i c k ( View v ){
-c h a n g e E n t i t y ( ) ;
+public void onClick(View v){
+changeEntity() ;
 }
 }) ;
 //OnClick Listener action for submit button
-g u e s s B u t t o n. s e t O n C l i c k L i s t e n e r (newView. O n C l i c k L i s t e n e r ( ){
+guessButton.setOnClickListener(newView.OnClickListener(){
 @Override
-public void o n C l i c k ( View v ){
+public void onClick(View v){
 // playing game
 playGame ( ) ;
 }
@@ -186,23 +186,22 @@ AlertDialoginstead of theSystem.out.println. To useAlertDialog,
 
 ```
 //Welcome Alert
-A l e r t D i a l o g. B u i l d e r w e l c o m e a l e r t =
-new A l e r t D i a l o g. B u i l d e r ( G u e s s M a s t e r A c t i v i t y .t h i s) ;
-//System. out. p r i n t l n (”(mm/dd/yyyy )”);
-w e l c o m e a l e r t. s e t T i t l e ( ” GuessMaster Gamev3 ” ) ;
-w e l c o m e a l e r t. s e t M e s s a g e ( e n t i t y. welcomeMessage ( ) ) ;
-w e l c o m e a l e r t. s e t C a n c e l a b l e (f a l s e) ; //No Cancel Button
-w e l c o m e a l e r t. s e t N e g a t i v e B u t t o n ( ”STARTGAME” , new
-D i a l o g I n t e r f a c e. O n C l i c k L i s t e n e r ( ) {
+AlertDialog.Builderwelcomealert =
+new AlertDialog.Builder(GuessMasterActivity.this);
+//System.out.println(”(mm/dd/yyyy )”);
+welcomealert.setTitle(”GuessMaster Gamev3”);
+welcomealert.setMessage(entity.welcomeMessage()) ;
+welcomealert.setCancelable(false); //No Cancel Button
+welcomealert.setNegativeButton(”STARTGAME” , new);
+DialogInterface.OnClickListener(){
 @Override
-public void o n C l i c k ( D i a l o g I n t e r f a c e d i a l o p , i n t which ) {
-Toast. makeText ( g e t B a s e C o n t e x t ( ) , ”Game i s S t a r t i n g...
-Enjoy ” , Toast .LENGTHSHORT ). show ( ) ;
+public void onClick(DialogInterfacedialop, int which) {
+Toast.makeText(getBaseContext(),”Game is Starting...Enjoy” ,Toast.LENGTHSHORT).show();
 }
 }) ;
 //Show Dialog
-A l e r t D i a l o g d i a l o g = w e l c o m e a l e r t. c r e a t e ( ) ;
-d i a l o g. show ( ) ;
+AlertDialogdialog = welcomealert.create();
+dialog.show() ;
 ```
 
 (xiii) Modify your playGame(Entity Entity) where the game engine is located. First,
@@ -213,12 +212,12 @@ While inside this method, remove the Scanner.nextLine() since we are not
 getting input from command line. Print the entity name to the entityName
 TextView and get the input from the EdiText userIn:
 ```
-//Name of the e n t i t y to be guessed in the entityName textview
-entityName. s e t T e x t ( e n t i t y. getName ( ) ) ;
+//Name of the entity to be guessed in the entityName textview
+entityName.setText(entity.getName());
 //Get Input from the EdiText
-a n s w e r = u s e r I n. g e t T e x t ( ). t o S t r i n g ( ) ;
-a n s w e r = a n s w e r. r e p l a c e ( ”\n” , ” ” ). r e p l a c e ( ”\r ” , ” ” ) ;
-Date d a t e =new Date ( a n s w e r ) ;
+answer = userIn.getText().toString();
+answer = answer.replace(”\n”,” ”).replace(”\r ”,” ”) ;
+Date date =new Date(answer) ;
 ```
 
 - For the two incorrect cases shown below in the playGame(Entity Entity) , create
@@ -227,16 +226,16 @@ Date d a t e =new Date ( a n s w e r ) ;
     Then, use setNegativeButton(“Ok”, new ...) for each dialog.
 ```
        //Check User Date Input
-          i f ( d a t e. p r e c e d e s ( e n t i t y. g e t B o r n ( ) ) ) {
-             // System. out. p r i n t l n (” Incorrect. Try a l a t e r date. ” ) ;
-} e l s e i f ( E n t i t y. g e t B o r n ( ). p r e c e d e s ( d a t e ) ) {
-       } e l s e {
-t i c k e t s [ numOfTickets++] = E n t i t y. getAwardedTicketNumber ( ) ;
-f o r (i n t i = 0 ; i < 1 0 0 ; i ++) {
-t o t a l t i k = t o t a l t i k + t i c k e t s [ i ] ;
+          if (date.precedes(entity.getBorn())) {
+             // System.out.println(”Incorrect. Try a later date.”);
+} elseif(Entity.getBorn().precedes(date)){
+       } else {
+tickets[numOfTickets++] = Entity.getAwardedTicketNumber();
+for(int i = 0 ; i < 100 ; i ++) {
+totaltik = totaltik + tickets[i];
 }
-//Use a l e r t here to l e t user know they have won
-// Call the ContinueGame () method inside the onClick () method
+//Use alert here to l e t user know they have won
+// Call the ContinueGame() method inside the onClick() method
 // of the DialogInterface.
 }
 ```
@@ -256,16 +255,16 @@ t o t a l t i k = t o t a l t i k + t i c k e t s [ i ] ;
 //Continue Game Method− This method gets another Entity randomly
 //Updates the Image view and the Entity Name Field
 public void ContinueGame ( ){
-e n t i t y i d = genRandomEntityId ( ) ;
-E n t i t y e n t i t y = e n t i t i e s [ e n t i t y i d ] ;
-entName = e n t i t y. getName ( ) ;
+entityid = genRandomEntityId ( );
+Entityentity = entities[entityid];
+entName = entity.getName();
 // Call the ImageSetter method
-I m a g e S e t t e r ( ) ;
+ImageSetter();
 // Print the name of the e n t i t y to be guessed
 // in the entityName textview
-entityName. s e t T e x t ( entName ) ;
+entityName.setText(entName);
 // Clear Previous Entry
-u s e r I n. g e t T e x t ( ). c l e a r ( ) ;
+userIn.getText().clear();
 }
 ```
 
