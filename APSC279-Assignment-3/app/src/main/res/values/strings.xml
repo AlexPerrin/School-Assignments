@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">GuessMaster</string>
-    <string name="SubmitGuess">Submit Guess</string>
-    <string name="ChangeEntity">Change Entity</string>
-    <string name="DateFormat">MM/DD/YYYY</string>
-</resources>

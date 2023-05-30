@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shader", "shader.vcxproj", "{71457ADC-EFCD-4D13-AF48-B42718667B63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71457ADC-EFCD-4D13-AF48-B42718667B63}.Debug|x86.ActiveCfg = Debug|Win32
+		{71457ADC-EFCD-4D13-AF48-B42718667B63}.Debug|x86.Build.0 = Debug|Win32
+		{71457ADC-EFCD-4D13-AF48-B42718667B63}.Release|x86.ActiveCfg = Release|Win32
+		{71457ADC-EFCD-4D13-AF48-B42718667B63}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {975A4858-8784-4B8F-AFE0-F62B36ADFAAF}
+	EndGlobalSection
+EndGlobal
