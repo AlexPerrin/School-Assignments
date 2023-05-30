@@ -1,0 +1,55 @@
+initial begin
+		clk <= 0;
+		
+		#20 //Load d64 into r2 through MDR
+		Mdatain <= 32'b1011;
+		read <= 1;
+		MDRin <= 1;
+		MDRout <= 1;
+		R2in <= 1;
+		
+		#20;
+		R2in <= 0;
+		
+		#20 //Load d16 into r4 through MDR
+		Mdatain <= 32'd2;
+		
+		#20
+		R4in <= 1;
+
+		#20;
+		read <= 0;
+		MDRin <= 0;
+		MDRout <= 0;
+		R4in <= 0;
+		
+		//T0, T1, T2 not needed (no instruction decode)
+		
+		#20 //T3
+		R2out <= 1;
+		Yin <= 1;
+		
+		#20
+		R2out <= 0;
+		Yin <= 0;
+		
+		#20 //T4
+		R4out <= 1;
+		SHR <= 1;
+		Zhighin <= 1;
+		
+		#20
+		R4out <= 0;
+		SHR <= 0;
+		Zhighin <= 0;
+		
+		#20 //T5
+		R5in <= 1;
+		Zhighout <= 1;
+		
+		#20 
+		R5in <= 0;
+		Zhighout <= 0;
+		
+		#40;
+	end

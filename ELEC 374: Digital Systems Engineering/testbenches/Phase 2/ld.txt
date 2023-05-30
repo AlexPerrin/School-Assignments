@@ -1,0 +1,78 @@
+	initial begin
+		clk <= 0;
+		
+		#20;	//T0
+		PCout <= 1;
+		MARin <= 1;
+		IncPC <= 1;
+		Zhighin <= 1;
+		
+		#20; //T1
+		PCout <= 0;
+		MARin <= 0;
+		IncPC <= 0;
+		Zhighin <= 0;
+		
+		Zhighout <= 1;
+		PCin <= 1;
+		read <= 1;
+		MDRin <= 1;
+		
+		#20; //T2
+		Zhighout <= 0;
+		PCin <= 0;
+		read <= 0;
+		MDRin <= 0;
+		
+		MDRout <= 1;
+		IRin <= 1;
+		
+		#20; //T3
+		MDRout <= 0;
+		IRin <= 0;
+		
+		Grb <= 1;
+		BAout <= 1;
+		Cin <= 1; //ADDED needed to write C reg
+		Yin <= 1;
+		
+		#20; //T4
+		Grb <= 0;
+		BAout <= 0;
+		Cin <= 0;
+		Yin <= 0;
+	
+		Cout <= 1;
+		ADD <= 1;
+		Zhighin <= 1;
+		
+		#20; //T5
+		Cout <= 0;
+		ADD <= 0;
+		Zhighin <= 0;	
+	
+		Zhighout <= 1;
+		MARin <= 1;
+		
+		#20; //T6
+		Zhighout <= 0;
+		MARin <= 0;
+
+		read <= 1;
+		MDRin <= 1;
+		
+		#20; //T7
+		read <= 0;
+		MDRin <= 0;
+		
+		MDRout <= 1;
+		Gra <= 1;
+		Rin <= 1;
+		
+		#20;
+		MDRout <= 0;
+		Gra <= 0;
+		Rin <= 0;
+		
+		#80;
+	end
