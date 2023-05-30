@@ -10,6 +10,9 @@ Fundamental concepts of object-oriented programming (OOP) such as encapsulation,
 * #### CMPE 320: Fundamentals of Software Development - C++
 Introduction to management of small and medium-scale software projects. Advanced programming methodology using the programming language C++. Includes a significant programming project.
 
+* #### ELEC 374: Digital Systems Engineering- Verilog
+High-performance logic design for arithmetic circuits; memory system designs based on static and dynamic RAMs; computer bus protocols and standard I/O interfaces; mass storage devices; hardware description languages (VHDL, Verilog); fault testing, design for testability, built-in self-test, memory testing, and boundary scan architectures; asynchronous sequential circuit design; introduction to GPU architectures and GPU computing. The course is supplemented by a CPU design project that allows students to become proficient with Field Programmable Gate Array (FPGA) devices and associated CAD tools, as well as with GPU computing through nVidia CUDA or OpenCL languages.
+
 * #### CMPE 452: Neural and Genetic Computing - Python (PyTorch, Tensorflow)
 Artificial Neural Networks (ANN) and Genetic Algorithms (GA) for problem solving and prediction tasks such as classification, clustering, optimization and data reduction and modeling human cognition, with application to real world problems. Ongoing research in this area in various application domains.
 
