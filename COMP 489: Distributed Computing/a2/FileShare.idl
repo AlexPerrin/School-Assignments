@@ -1,0 +1,72 @@
+/*
+ * File Name: FileShare.idl
+ * Description: CORBA Interface Definition Language (IDL) specification for P2P File-Sharing
+ * 
+ * This IDL file defines the remote interface contract between FileShare clients and server.
+ * It specifies the methods available for file registration, discovery, and peer location
+ * in the distributed file sharing system. The IDL compiler generates language-specific
+ * stubs and skeletons from this specification.
+ * 
+ * Expected Inputs: Method parameters as defined in each interface method
+ * Expected Outputs: Return values and exceptions as specified for each method
+ * 
+ * Used by: CORBA IDL compiler to generate client stubs and server skeletons
+ * Will generate: _FileShareStub.java, FileSharePOA.java, and related CORBA artifacts
+ * 
+ * Author: [Your Name]
+ * Course: COMP 489 - Distributed Systems
+ * Assignment: Assignment 2 - CORBA-based P2P File-Sharing Application
+ * Date: [Current Date]
+ */
+
+/**
+ * FileShare interface defines the contract for the central registry server
+ * in the P2P file sharing system. This interface allows clients to:
+ * - Register files for sharing with other peers
+ * - Unregister files when they're no longer available
+ * - Search for files by name patterns
+ * - Discover which peer owns a specific file for direct connection
+ */
+interface FileShare {
+    /**
+     * Registers a file as available for sharing in the P2P network.
+     * The server stores the file name along with the client's network location
+     * so other clients can discover and download the file.
+     * 
+     * @param file_name The name of the file being registered for sharing
+     * @param client_address The IP address where the file owner can be reached
+     * @param client_port The port number where the file owner's server is listening
+     */
+    void registerFile(in string file_name, in string client_address, in long client_port);
+    
+    /**
+     * Removes a file from the sharing registry.
+     * After unregistration, the file will no longer appear in search results
+     * and cannot be downloaded by other clients.
+     * 
+     * @param file_name The name of the file to stop sharing
+     * @param client_address The IP address of the client that owns the file
+     * @param client_port The port number of the client's file server
+     */
+    void unregisterFile(in string file_name, in string client_address, in long client_port);
+    
+    /**
+     * Searches for files matching a given query string.
+     * Performs a pattern match against registered file names and returns
+     * a list of matching files available for download.
+     * 
+     * @param searchQuery The search term to match against file names
+     * @return A newline-separated string of matching file names, empty if none found
+     */
+    string searchFiles(in string searchQuery);
+    
+    /**
+     * Retrieves the network location of a file's owner.
+     * Used by clients to establish direct peer-to-peer connections for file downloads.
+     * This enables the decentralized transfer aspect of the P2P system.
+     * 
+     * @param file_name The name of the file to locate
+     * @return A string in format "ip:port" identifying the file owner, empty if not found
+     */
+    string getFileOwner(in string file_name);
+};
