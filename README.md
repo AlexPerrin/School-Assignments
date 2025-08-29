@@ -6,8 +6,27 @@ Cryptography topics include: block ciphers, advanced encryption standard, public
 * #### CMPE 452: Neural and Genetic Computing - Python (PyTorch, Tensorflow)
 Artificial Neural Networks (ANN) and Genetic Algorithms (GA) for problem solving and prediction tasks such as classification, clustering, optimization and data reduction and modeling human cognition, with application to real world problems. Ongoing research in this area in various application domains.
 
+* #### COMP 489: Distributed Computing - Java
+Analyze the essential features and reference model in distributed systems. 
+Identify the capacity requirements for distributed systems. 
+Design distributed application models in object-oriented approaches.
+Write multi-threaded programs in Java. 
+Apply concurrency control and mutual exclusion mechanisms to programs. 
+Write code using Java networking packages in distributed applications.
+Write code to access relational database systems using JDBC API.
+Examine the security issues in distributed application and write code using Java Security API.
+Implement an integrated distributed application in a Java environment.
+
 * #### CMPE 454: Computer Graphics - C++ / OpenGL
 An introduction to computer graphics, including a review of current hardware; modelling and transformations in two and three dimensions; visual realism; perspective, hidden surface elimination, and shading; colour models; applications in several fields.
+
+* #### COMP 378: Database Management - SQL, Postgres
+Analyze an organization’s needs regarding data, data organization, and data storage.
+Apply principles of relational database design to build data models.
+Develop and implement database solutions.E
+Elaborate data storage and indexing options for optimal query processing.
+Perform basic database administration tasks.
+Analyze an organization’s needs regarding data analytics and design solutions using the concepts of data warehousing and NoSQL.
 
 * #### CMPE 320: Fundamentals of Software Development - C++
 Introduction to management of small and medium-scale software projects. Advanced programming methodology using the programming language C++. Includes a significant programming project.
