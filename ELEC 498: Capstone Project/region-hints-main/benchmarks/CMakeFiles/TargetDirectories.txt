@@ -1,0 +1,3 @@
+/home/jcorley/cap/region-hints/benchmarks/CMakeFiles/benchmark.dir
+/home/jcorley/cap/region-hints/benchmarks/CMakeFiles/edit_cache.dir
+/home/jcorley/cap/region-hints/benchmarks/CMakeFiles/rebuild_cache.dir
