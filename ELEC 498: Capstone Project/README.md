@@ -12,11 +12,11 @@ Through iterative development of custom benchmarks and power control scripts, we
 
 ## Team Members
 
-- James Corley (20166272)
-- Simon Dudtschak (20166103)
-- Alex Perrin (20056483)
+- James Corley
+- Simon Dudtschak
+- Alex Perrin
 
-**Supervisors:** Dr. Ryan Grant, Dr. Alireza Bakhshai, Dr. Mike Korenberg, Dr. Alex Tait, Dr. Sean Whitehall
+**Supervisors:** Dr. Ryan Grant, Dr. Sean Whitehall
 
 ## Technical Implementation
 
