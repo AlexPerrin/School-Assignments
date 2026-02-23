@@ -2,11 +2,21 @@
 
 A series of C++ simulations and rendering pipelines built with OpenGL and GLSL, covering real-time physics, multi-pass deferred rendering, and 3D spline-driven animation.
 
----
+## Technologies
+
+- **Language**: C++17
+- **Graphics API**: OpenGL 3.3 / OpenGL ES 3.0
+- **Shader language**: GLSL 3.00 ES
+- **Windowing / input**: GLFW3
+- **Image loading**: LodePNG (A3), FreeType (A2/A3 text rendering)
+- **Build**: GNU Make (Linux/macOS), MSVC (Windows)
+
 
 ## Assignment 1: Lunar Lander
 
 A real-time 2D physics simulation of the classic Lunar Lander game, rendered with OpenGL.
+
+![](a1/output.png)
 
 ### Object-Oriented Design
 
@@ -57,6 +67,8 @@ When the lander is within `ZOOM_RADIUS` of the terrain, the world-to-view matrix
 **Landing score** (`World::updateState`):
 A composite score is computed as a weighted sum of three normalized criteria: horizontal speed, vertical speed, and remaining fuel, each contributing one-third of a possible 1000 points.
 
+![](a2_v2/output.png)
+
 ---
 
 ## Assignment 2: Non-Photorealistic Rendering (Deferred Shading)
@@ -103,6 +115,8 @@ Each of the eight neighbours is sampled using `texCoordInc` (the texel size in U
 ## Assignment 3: Roller Coaster Simulator
 
 An interactive 3D roller coaster simulator with spline track evaluation, energy-based physics, procedural heightfield terrain, and an arcball camera.
+
+![](a3/output.png)
 
 ### Object-Oriented Design
 
@@ -157,14 +171,3 @@ Tests the mouse ray against every triangle in the heightfield mesh using the Mö
 
 **Arcball rotation** (`Arcball`):
 Mouse drag events are mapped to rotations on a virtual sphere. The rotation is accumulated as a quaternion, converted to a `mat4` view matrix each frame, avoiding gimbal lock inherent in Euler angle representations.
-
----
-
-## Technologies
-
-- **Language**: C++17
-- **Graphics API**: OpenGL 3.3 / OpenGL ES 3.0
-- **Shader language**: GLSL 3.00 ES
-- **Windowing / input**: GLFW3
-- **Image loading**: LodePNG (A3), FreeType (A2/A3 text rendering)
-- **Build**: GNU Make (Linux/macOS), MSVC (Windows)
