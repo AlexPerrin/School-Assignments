@@ -1,10 +1,10 @@
-# CMPE 454 — Computer Graphics
+# CMPE 454: Computer Graphics
 
 A series of C++ simulations and rendering pipelines built with OpenGL and GLSL, covering real-time physics, multi-pass deferred rendering, and 3D spline-driven animation.
 
 ---
 
-## Assignment 1 — Lunar Lander
+## Assignment 1: Lunar Lander
 
 A real-time 2D physics simulation of the classic Lunar Lander game, rendered with OpenGL.
 
@@ -14,7 +14,7 @@ The simulation is decomposed into three classes with clear, single-responsibilit
 
 | Class | Responsibility |
 |---|---|
-| `World` | Top-level game loop — owns `Landscape` and `Lander` pointers, drives `updateState()` and `draw()`, manages score and timing |
+| `World` | Top-level game loop owns `Landscape` and `Lander` pointers, drives `updateState()` and `draw()`, manages score and timing |
 | `Lander` | Encapsulates all lander state (position, velocity, orientation, fuel) and its VAO/VBO GPU resources |
 | `Landscape` | Encapsulates terrain geometry and all collision/proximity queries against it |
 
@@ -22,9 +22,9 @@ The simulation is decomposed into three classes with clear, single-responsibilit
 
 ### Data Structures
 
-- **Flat `float[]` vertex arrays** — both `Lander::landerVerts[]` and `Landscape::landscapeVerts[]` are static sentinel-terminated arrays (`-1` marks the end). Iterating with a stride of 2 gives (x, y) pairs, keeping geometry data contiguous for GPU upload.
-- **VAO / VBO** (`GLuint`) — each renderable object allocates its own Vertex Array Object and Vertex Buffer Object. `setupVAO()` normalizes model-space coordinates into world space in-place, then uploads once to the GPU; subsequent frames only bind the VAO and call `glDrawArrays`.
-- **Custom linear algebra types** (`vec3`, `vec4`, `mat4` from `linalg.h`) — operator-overloaded value types supporting dot product (`*`), cross product (`^`), scalar multiplication, and `mat4` composition, forming the backbone of all transform computations.
+- **Flat `float[]` vertex arrays** both `Lander::landerVerts[]` and `Landscape::landscapeVerts[]` are static sentinel-terminated arrays (`-1` marks the end). Iterating with a stride of 2 gives (x, y) pairs, keeping geometry data contiguous for GPU upload.
+- **VAO / VBO** (`GLuint`) each renderable object allocates its own Vertex Array Object and Vertex Buffer Object. `setupVAO()` normalizes model-space coordinates into world space in-place, then uploads once to the GPU; subsequent frames only bind the VAO and call `glDrawArrays`.
+- **Custom linear algebra types** (`vec3`, `vec4`, `mat4` from `linalg.h`) operator-overloaded value types supporting dot product (`*`), cross product (`^`), scalar multiplication, and `mat4` composition, forming the backbone of all transform computations.
 
 ### Algorithms
 
@@ -55,11 +55,11 @@ The full MVP matrix is composed by right-multiplying: `worldToView * translate(p
 When the lander is within `ZOOM_RADIUS` of the terrain, the world-to-view matrix switches to a scale centered on the lander's world position, providing a close-up view for landing.
 
 **Landing score** (`World::updateState`):
-A composite score is computed as a weighted sum of three normalized criteria — horizontal speed, vertical speed, and remaining fuel — each contributing one-third of a possible 1000 points.
+A composite score is computed as a weighted sum of three normalized criteria: horizontal speed, vertical speed, and remaining fuel, each contributing one-third of a possible 1000 points.
 
 ---
 
-## Assignment 2 — Non-Photorealistic Rendering (Deferred Shading)
+## Assignment 2: Non-Photorealistic Rendering (Deferred Shading)
 
 A three-pass GPU rendering pipeline implementing cel shading and wide black silhouettes on a 3D mesh, written in GLSL with a C++ host.
 
@@ -81,26 +81,26 @@ A three-pass GPU rendering pipeline implementing cel shading and wide black silh
 
 ### Algorithms
 
-**Pass 1 — Geometry to G-buffer** (`pass1.vert`):
+**Pass 1: Geometry to G-buffer** (`pass1.vert`):
 Transforms vertex normals into View Coordinate Space with `MV * vec4(normal, 0)` (w=0 excludes translation). Encodes NDC depth into `[0, 1]` via `(gl_Position.z / gl_Position.w + 1) / 2`. Outputs colour, VCS normal, and depth to three texture attachments simultaneously.
 
-**Pass 2 — Laplacian edge detection** (`pass2.frag`):
+**Pass 2: Laplacian edge detection** (`pass2.frag`):
 Applies a 3×3 discrete Laplacian kernel to the depth texture:
 ```
 weights:  -1 -1 -1
           -1  8 -1
           -1 -1 -1
 ```
-Each of the eight neighbours is sampled using `texCoordInc` (the texel size in UV space) and accumulated with one `texture()` lookup each. The signed Laplacian is stored directly — large negative values mark depth discontinuities (silhouette edges).
+Each of the eight neighbours is sampled using `texCoordInc` (the texel size in UV space) and accumulated with one `texture()` lookup each. The signed Laplacian is stored directly. Large negative values mark depth discontinuities (silhouette edges).
 
-**Pass 3 — Cel shading + silhouette blending** (`pass3.frag`):
+**Pass 3: Cel shading + silhouette blending** (`pass3.frag`):
 - **Early discard**: background fragments with no nearby edge are discarded before any expensive lookups.
 - **Cel shading**: diffuse intensity `NdotL = dot(normal, lightDir)` is quantized to `numQuanta` discrete steps via `ceil(numQuanta * NdotL) / numQuanta`, floored at 0.2 for ambient.
 - **Silhouette blending**: a `kernelRadius × kernelRadius` neighbourhood is scanned for fragments whose Laplacian exceeds a threshold. The distance to the closest such edge fragment is computed; the ratio `closestDist / maxDist` is used as a blend factor that transitions smoothly from solid black (at the edge) to the full cel-shaded colour (at `kernelRadius` pixels away).
 
 ---
 
-## Assignment 3 — Roller Coaster Simulator
+## Assignment 3: Roller Coaster Simulator
 
 An interactive 3D roller coaster simulator with spline track evaluation, energy-based physics, procedural heightfield terrain, and an arcball camera.
 
@@ -118,7 +118,7 @@ An interactive 3D roller coaster simulator with spline track evaluation, energy-
 
 ### Data Structures
 
-**`seq<T>` — Templated dynamic array** (`seq.h`):
+**`seq<T>` Templated dynamic array** (`seq.h`):
 A custom resizable array implementing the same interface as `std::vector`. Storage doubles when capacity is exhausted:
 ```cpp
 if (numElements == storageSize) {
@@ -140,7 +140,7 @@ A 2D array of world-space vertex positions and normals derived from a PNG height
 ### Algorithms
 
 **Spline evaluation** (`Spline::eval`):
-For parameter `t`, the segment index is `q = floor(t)` and the local parameter is `u = t - q`. Four control points `q[-1], q[0], q[1], q[2]` are assembled into a `mat4` column matrix `V`. The basis matrix `M[currSpline]` is multiplied by `V` to produce coefficient matrix `Mv`. Then:
+For parameter `t`, the segment index is `q = floor(t)` and the local parameter is `u = t - q`. Four control points `q[-1], q[0], q[1], q[2]` are assembled into a `mat4` column matrix `V`. The basis matrix `M[currSpline]` is multiplied by `V` to produce the coefficient matrix `Mv`. Then:
 - Value: `Mv[0]*u³ + Mv[1]*u² + Mv[2]*u + Mv[3]`
 - Tangent: `3*Mv[0]*u² + 2*Mv[1]*u + Mv[2]`
 
@@ -150,7 +150,7 @@ Cyclic wrapping (`q_idx % data.size()`) ensures continuity across the loop endpo
 Converts a desired arc length `s` to a spline parameter `t` using **binary search** on the precomputed `arcLength[]` table — O(log N) per query. Linear interpolation within the located interval gives sub-sample precision.
 
 **Local coordinate frame** (`Spline::findLocalSystem`):
-At each point on the track, an orthonormal frame (origin `o`, axes `x`, `y`, `z`) is derived from the spline tangent. The forward axis `z` is the normalized tangent. The up axis `y` is constructed to point as vertical as possible without being parallel to `z`, then `x = -(y × z)` completes the right-handed frame. This frame drives both track geometry rendering and train orientation.
+At each point on the track, an orthonormal frame (origin `o`, axes `x`, `y`, `z`) is derived from the spline tangent. The forward axis `z` is the normalized tangent. The up axis `y` is constructed to point as vertically as possible without being parallel to `z`, then `x = -(y × z)` completes the right-handed frame. This frame drives both track geometry rendering and train orientation.
 
 **Ray–terrain intersection** (`Terrain::findIntPoint`):
 Tests the mouse ray against every triangle in the heightfield mesh using the Möller–Trumbore algorithm (`rayTriangleInt`), enabling interactive placement of control points by clicking directly on the terrain surface.
